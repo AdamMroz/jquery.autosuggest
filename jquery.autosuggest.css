@@ -1,0 +1,32 @@
+.cp-asuggest-wrap {
+	position: relative;
+}
+
+.cp-asuggest-list-box {
+	position: absolute;
+	z-index: 999;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+	left: 0;
+	right: 0;
+}
+
+.cp-asuggest-list {
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.cp-asuggest-list:hover {
+	background-color: #ededed;
+}
+
+.cp-asuggest-list.cp-asg-selected {
+	background-color: #ccc;
+}
+
+.cp-asuggest-list.cp-asuggest-list-error,
+.cp-asuggest-list.cp-asuggest-list-error:hover {
+	color: #fff;
+	background-color: #d9534f;;
+}
