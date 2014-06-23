@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>jQuery.autoSuggest Plugin</title>
+
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		<link rel="stylesheet" href="jquery.autosuggest.css">
+		<link rel="stylesheet" href="demo.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->	
+		
+	</head>
+	<body>
+		
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		  <div class="container">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">jQuery.autoSuggest</a>
+		    </div>
+		    <div class="navbar-collapse collapse">
+		      <ul class="nav navbar-nav">
+		        <li><a href="#usage">Usage &amp; API</a></li>
+		        <li><a href="#server">Server side</a></li>
+		        <li><a href="#demo">Demo</a></li>
+		        <li><a href="#download">Download</a></li>
+		      </ul>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="container">
+			<div class="jumbotron">
+				<h1>jQuery.autoSuggest</h1>
+				<p>Simple Auto-suggest plugin using jQuery on client side and PHP + MySQL on server side.</p>
+			</div>
+			
+			
+			<div class="page-header" id="usage">
+				<h1>Usage &amp; API</h1>
+			</div>
+			
+			<h4>Include jquery and plugin's js and css files:</h4>
+			<pre class="highlight">&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="jquery.autosuggest.js"&gt;&lt;/script&gt;
+&lt;link href="jquery.autosuggest.css" rel="stylesheet"&gt;</pre>
+
+			<h4>Call plugin:</h4>
+			<pre class="highlight">$('input').autosuggest({
+	server: 'asg_server.php',
+	delay: 600,
+	start: 2
+});</pre>
+			<h4>Get id of selected suggestion:</h4>
+			
+			<pre class="highlight">var resultId = $('input').attr('data-id');</pre>
+			<span>(data-id attribute is set to "0" if no suggestion is selected)</span>
+
+			<h4>Options:</h4>
+			<ul>
+				<li><b>server</b> - server side file. <code>Default is <b>asg_server.php</b></code></li>
+				<li><b>delay</b> (ms) - hold ajax request until next key is pressed. <code>Default is <b>600</b></code></li>
+				<li><b>start</b> - start ajax requests after x characters. <code>Default is <b>2</b></code></li>
+			</ul>
+
+			
+  			<div class="page-header" id="server">
+				<h1>Server Side</h1>
+			</div>
+			<h4>Change the following variables in asg_server.php file:</h4>
+			<pre>// database settings
+	
+$asg_DbName = 'yourDatabaseName';
+$asg_DbHost = 'localhost';
+$asg_DbUser = 'yourDatabaseUser';
+$asg_DbPass = 'yourDatabasePassword';
+	
+		
+// search settings
+	
+$asg_resultIdColumn = 'idOfYourTable';
+$asg_TableName = 'yourTableName';
+$asg_SearchColumn = 'searchInThisColumn';
+	
+$asg_notFoundText = ' result not found :( ';</pre>
+
+			<div class="page-header" id="demo">
+				<h1>Demo:</h1>
+			</div>
+			<div class="row">
+				<div class="form-group col-xs-4">
+					<input type="text" class="form-control" id="demoInput" placeholder="Your country...">
+				</div>
+			</div>
+
+
+			<div class="page-header" id="download">
+				<h1>Download:</h1>
+			</div>
+			
+			<p>
+				<a href="jquery.autosuggest.zip" class="btn btn-success btn-lg"><i class="fa fa-download"></i> Download Zip</a>
+				<a href="https://github.com/bartoszkrawczyk2/jquery.autosuggest/" class="btn btn-default btn-lg"><i class="fa fa-github"></i> Github</a>
+			</p>
+			
+
+			<footer>
+				Created by <a href="http://bkwebdesign.pl/">Bartosz Krawczyk</a>. Licensed under <a href="http://opensource.org/licenses/MIT">MIT License</a>.
+			</footer>
+  		
+  		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="jquery.autosuggest.min.js"></script>
+		
+		<script>
+			$(function() {
+			    $('.nav a').on('click', function(){ 
+			        if($('.navbar-toggle').css('display') !='none'){
+			            $(".navbar-toggle").trigger( "click" );
+			        }
+			    });
+			    
+			    
+			    $('#demoInput').autosuggest({
+					server: 'asg_server.php',
+					delay: 600,
+					start: 2
+				});
+			});
+		</script>
+		
+	</body>
+</html>
