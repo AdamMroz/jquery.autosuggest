@@ -1,0 +1,22 @@
+body {
+	padding-top: 70px;
+	padding-bottom: 140px;
+}
+
+.jumbotron {
+	background: rgb(212, 255, 147);
+}
+
+.page-header > h1 {
+	padding-top: 70px;
+}
+
+footer {
+	border-top: 1px solid #eee;
+	margin-top: 160px;
+	padding-top: 16px;
+}
+
+h4 {
+	padding-top: 20px;
+}
