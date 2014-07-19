@@ -52,9 +52,19 @@ $.fn.autosuggest = function (options) {
 			    var qr = input.val().trim();
 			    if (input.val().trim().length > start)
     			{
-    				input.next('.cp-asuggest-list-box').load(settings.server, {query: qr}, function () {
-						list_elems = input.closest('.cp-asuggest-wrap').find('.cp-asuggest-list').length;
-						input.closest('.cp-asuggest-wrap').find('.cp-asuggest-list').highlight(qr);
+    				input.next('.cp-asuggest-list-box').empty();
+	    			$.ajax({
+	    				url: settings.server,
+	    				method: 'POST',
+	    				dataType: 'json',
+	    				data: { query: qr },
+	    				success: function(response) {
+	    					$.each(response, function(index, value) {
+	    						input.next('.cp-asuggest-list-box').append('<div data-id="'+value.id+'" class="cp-asuggest-list cp-asg-onlist-'+value.count+'">'+value.name+'</div>')
+	    					});
+	    					list_elems = input.closest('.cp-asuggest-wrap').find('.cp-asuggest-list').length;
+							input.closest('.cp-asuggest-wrap').find('.cp-asuggest-list').highlight(qr);
+	    				}
 	    			});
     			} else {
     				input.next('.cp-asuggest-list-box').empty();
